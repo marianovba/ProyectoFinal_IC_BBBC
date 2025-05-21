@@ -8,17 +8,22 @@ def generate_individual():
 def generate_population(size):
     return [generate_individual() for _ in range(size)]
 
-def big_bang(centers, generation, pop_size):
+def big_bang(centers, generation, pop_size, mutation_prob=0.2):
     extent = 1.0 / (generation + 1)
     new_population = []
     per_center = max(1, pop_size // len(centers))
+    
     for center in centers:
         for _ in range(per_center):
             child = []
             for gene in center:
-                perturb = gene + random.uniform(-1, 1) * extent
-                child.append(int(round(min(1, max(0, perturb)))))
+                if random.random() < mutation_prob:
+                    child.append(1-gene)
+                else:
+                    perturb = gene + random.uniform(-1, 1) * extent
+                    child.append(int(round(min(1, max(0, perturb)))))
             new_population.append(child)
+
     while len(new_population) < pop_size:
         new_population.append(generate_individual())
     return new_population[:pop_size]

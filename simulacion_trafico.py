@@ -4,7 +4,7 @@ STATES_PER_LIGHT = SIMULATION_TIME // MIN_STATE_DURATION
 NUM_TRAFFIC_LIGHTS = 4
 GENOTYPE_LENGTH = STATES_PER_LIGHT * NUM_TRAFFIC_LIGHTS
 
-def simulate_traffic(individual, entry_interval=5):
+def simulate_traffic(individual, entry_interval=1.25):
     light_sequences = [
         individual[i * STATES_PER_LIGHT : (i + 1) * STATES_PER_LIGHT]
         for i in range(NUM_TRAFFIC_LIGHTS)
