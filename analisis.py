@@ -1,4 +1,4 @@
-from fitness_filtering import plot_multiple_runs, plot_fitness_distribution
+from fitness_filtering import plot_multiple_runs, plot_fitness_distribution, plot_fitness_summary
 
 def analizar_resultados(runs):
     # Comparación entre ejecuciones
@@ -12,3 +12,4 @@ def analizar_resultados(runs):
             grouped_history[g].append(run[g]["best_fitness"])
 
     plot_fitness_distribution(grouped_history, title="Distribución del Fitness por Generación")
+    plot_fitness_summary(runs)

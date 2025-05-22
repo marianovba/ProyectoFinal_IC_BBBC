@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
 from scipy.spatial.distance import pdist, squareform
 
 def compute_fitness(sim_result):
@@ -57,6 +58,46 @@ def plot_multiple_runs(runs, title="Comparación de ejecuciones"):
         fitness = [h["best_fitness"] for h in history]
         plt.plot(generations, fitness, label=f"Ejecución {i+1}")
     plt.title(title)
+    plt.xlabel("Generación")
+    plt.ylabel("Fitness")
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
+def plot_fitness_summary(runs, optimal_fitness=0.0, acceptable_threshold=4.5):
+    generations = len(runs[0])
+    summary = {
+        "Generación": [],
+        "Mejor": [],
+        "Peor": [],
+        "Promedio": [],
+        "Distancia al Óptimo": [],
+    }
+
+    for g in range(generations):
+        fitnesses = [run[g]["best_fitness"] for run in runs]
+        best = min(fitnesses)
+        worst = max(fitnesses)
+        avg = sum(fitnesses) / len(fitnesses)
+        dist = avg - optimal_fitness
+
+        summary["Generación"].append(g)
+        summary["Mejor"].append(best)
+        summary["Peor"].append(worst)
+        summary["Promedio"].append(avg)
+        summary["Distancia al Óptimo"].append(dist)
+
+    df = pd.DataFrame(summary)
+
+    plt.figure(figsize=(12, 6))
+    plt.plot(df["Generación"], df["Promedio"], label="Fitness Promedio", marker="o")
+    plt.plot(df["Generación"], df["Mejor"], label="Fitness Mínimo", linestyle="--")
+    plt.plot(df["Generación"], df["Peor"], label="Fitness Máximo", linestyle="--")
+    plt.axhline(optimal_fitness, color="green", linestyle=":", label="Fitness Óptimo")
+    plt.axhline(acceptable_threshold, color="red", linestyle=":", label="Umbral Aceptable")
+
+    plt.title("Resumen de Fitness por Generación")
     plt.xlabel("Generación")
     plt.ylabel("Fitness")
     plt.legend()
