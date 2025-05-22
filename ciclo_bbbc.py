@@ -49,6 +49,8 @@ def mgp_bbbc(pop_size, generations, clustering_fn, clustering_param):
         centers = clustering_fn(archive, archive_fitnesses, clustering_param)
         population = big_bang(centers, generation, pop_size)
         best_fit = min(fitnesses)
-        history.append({"generation": generation, "best_fitness": best_fit})
+        history.append({"generation": generation,
+                        "best_fitness": min(fitnesses),
+                        "all_fitness": fitnesses})
 
     return history

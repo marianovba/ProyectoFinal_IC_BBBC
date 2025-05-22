@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 from scipy.spatial.distance import pdist, squareform
 
 def compute_fitness(sim_result):
@@ -31,6 +32,34 @@ def plot_fitness_evolution(history, title="MGP-BBBC Fitness Evolution"):
     plt.title(title)
     plt.xlabel("Generación")
     plt.ylabel("Mejor Fitness")
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
+def plot_fitness_distribution(history_list, title="Distribución del Fitness"):
+    all_data = []
+    for gen_idx, generation in enumerate(history_list):
+        for fit in generation:
+            all_data.append({"Generación": gen_idx, "Fitness": fit})
+    df = pd.DataFrame(all_data)
+    plt.figure(figsize=(12, 6))
+    sns.boxplot(x="Generación", y="Fitness", data=df)
+    plt.title(title)
+    plt.xticks(rotation=45)
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
+def plot_multiple_runs(runs, title="Comparación de ejecuciones"):
+    plt.figure(figsize=(10, 6))
+    for i, history in enumerate(runs):
+        generations = [h["generation"] for h in history]
+        fitness = [h["best_fitness"] for h in history]
+        plt.plot(generations, fitness, label=f"Ejecución {i+1}")
+    plt.title(title)
+    plt.xlabel("Generación")
+    plt.ylabel("Fitness")
+    plt.legend()
     plt.grid(True)
     plt.tight_layout()
     plt.show()
