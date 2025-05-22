@@ -49,17 +49,6 @@ Por lo tanto, la meta del algoritmo es **minimizar el fitness** para encontrar l
 
 ---
 
-## Archivos principales
-
-- `main.py`: punto de entrada principal
-- `simulacion_trafico.py`: lógica del simulador de tráfico
-- `ciclo_bbbc.py`: implementación del ciclo MGP-BBBC
-- `clustering.py`: funciones de clustering (MeanShift, KMeans)
-- `fitness_filtering.py`: fitness, filtrado y visualizaciones
-- `analisis.py`: análisis comparativo entre ejecuciones
-
----
-
 ## Requisitos
 
 Instala las dependencias con:
@@ -73,9 +62,7 @@ pip install -r requirements.txt
 ## Ejecución
 
 ```
-python main.py
+**Replicacion:**W
+**Optimizacion:** python main.py
 ```
 
-Para modificar parámetros como tamaño de población o generaciones, edita `main.py`.
-
----
