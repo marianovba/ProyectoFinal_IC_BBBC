@@ -12,9 +12,9 @@ class Semaforo:
 
 class Individuo:
     def __init__(self):
-        self.semaforos = [Semaforo() for _ in range(4)]  # 4 vías/semáforos
-        self.objetivo = None  # Fitness
-        self.esperas = (0, 0)  # E, ME
+        self.semaforos = [Semaforo() for _ in range(4)]  
+        self.objetivo = None  
+        self.esperas = (0, 0)  
         
 
 class Simulador:
@@ -54,7 +54,7 @@ class Simulador:
 #Funciones 
  
 def seleccion(poblacion, n_seleccionados=50):
-    poblacion.sort(key=lambda x: x.objetivo, reverse=False)  # menor fitness = mejor
+    poblacion.sort(key=lambda x: x.objetivo, reverse=False)  # menor el fitness = mejor la solucion
     return poblacion[:n_seleccionados]
 
 def cruce(padre1, padre2):
