@@ -14,6 +14,6 @@ if __name__ == "__main__":
             clustering_param=5
         )
         runs.append(result)
-        plot_fitness_evolution(result, title=f"Evolución del Fitness - Ejecución {i+1}")
+        #plot_fitness_evolution(result, title=f"Evolución del Fitness - Ejecución {i+1}")
 
     analizar_resultados(runs)

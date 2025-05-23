@@ -61,7 +61,7 @@ pip install -r requirements.txt
 
 ## Ejecución
 
-- **Replicacion:** 
+- **Replicacion:** python replica.py
 - **Optimizacion:** python main.py
 
 
